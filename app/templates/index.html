@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Deteksi Penyakit Daun Tanaman</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>🌿 Deteksi Penyakit Tanaman</h1>
+        <p class="subtitle">Deteksi penyakit daun secara real-time</p>
+      </header>
+
+      <nav class="nav-tabs">
+        <a href="/" class="tab-link active">Kamera</a>
+        <a href="/gallery" class="tab-link">Galeri</a>
+      </nav>
+
+      <div class="main-content">
+        <!-- Camera Section -->
+        <section class="camera-section">
+          <div class="video-container">
+            <video id="video" autoplay playsinline></video>
+            <canvas id="canvas" style="display: none"></canvas>
+          </div>
+
+          <div class="controls">
+            <button id="startBtn" class="btn btn-primary">
+              <span class="btn-icon">📷</span> Mulai Deteksi
+            </button>
+            <button id="stopBtn" class="btn btn-secondary" disabled>
+              <span class="btn-icon">⏸️</span> Berhenti
+            </button>
+            <button id="captureBtn" class="btn btn-success" disabled>
+              <span class="btn-icon">💾</span> Tangkap
+            </button>
+            <button id="switchCameraBtn" class="btn btn-secondary">
+              <span class="btn-icon">🔄</span> Ganti
+            </button>
+          </div>
+
+          <div class="status-bar">
+            <span id="statusText">Siap untuk mulai</span>
+            <span id="fpsCounter" class="fps-counter">0 FPS</span>
+          </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section">
+          <h2>Hasil Deteksi</h2>
+
+          <div id="resultContainer" class="result-container hidden">
+            <!-- Annotated Image -->
+            <div class="annotated-preview">
+              <img id="annotatedImage" src="" alt="Hasil deteksi" />
+            </div>
+
+            <!-- Detections List -->
+            <div class="detections-panel">
+              <h3>🔍 Penyakit Terdeteksi</h3>
+              <div id="detectionsList" class="detections-list">
+                <!-- Will be populated by JavaScript -->
+              </div>
+            </div>
+
+            <!-- AI Feedback Panel -->
+            <div class="feedback-panel">
+              <h3>🤖 Umpan Balik AI</h3>
+
+              <div class="feedback-section">
+                <h4>Penilaian Kualitas</h4>
+                <div id="critiqueList" class="feedback-list">
+                  <!-- Will be populated by JavaScript -->
+                </div>
+              </div>
+
+              <div class="feedback-section">
+                <h4>Saran</h4>
+                <div id="suggestionsList" class="feedback-list">
+                  <!-- Will be populated by JavaScript -->
+                </div>
+              </div>
+
+              <div class="disclaimer">
+                <strong>⚠️ Penafian:</strong>
+                <p id="disclaimerText">
+                  Sistem ini hanya menyediakan dukungan keputusan dan BUKAN
+                  pengganti diagnosis profesional.
+                </p>
+              </div>
+            </div>
+
+            <!-- Metrics -->
+            <div class="metrics-panel">
+              <h3>📊 Metrik Gambar</h3>
+              <div id="metricsDisplay" class="metrics-grid">
+                <!-- Will be populated by JavaScript -->
+              </div>
+            </div>
+          </div>
+
+          <div id="noResultsMessage" class="no-results">
+            <p>📸 Mulai deteksi untuk melihat hasil</p>
+          </div>
+        </section>
+      </div>
+
+      <!-- Capture Success Toast -->
+      <div id="captureToast" class="toast hidden">
+        <span class="toast-icon">✅</span>
+        <span class="toast-message">Tangkapan berhasil disimpan!</span>
+      </div>
+
+      <!-- Loading Overlay -->
+      <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="spinner"></div>
+        <p>Memproses...</p>
+      </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>

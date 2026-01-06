@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Galeri Tangkapan - Deteksi Penyakit Tanaman</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>🌿 Galeri Tangkapan</h1>
+        <p class="subtitle">Lihat deteksi tersimpan</p>
+      </header>
+
+      <nav class="nav-tabs">
+        <a href="/" class="tab-link">Kamera</a>
+        <a href="/gallery" class="tab-link active">Galeri</a>
+      </nav>
+
+      <div class="gallery-content">
+        {% if captures %}
+        <div class="gallery-grid">
+          {% for capture in captures %}
+          <div class="gallery-item">
+            <div class="gallery-image-container">
+              <img
+                src="/captures/{{ capture.annotated_image }}"
+                alt="Tangkapan {{ capture.capture_id }}"
+                class="gallery-thumbnail"
+                onclick="openModal('{{ capture.capture_id }}')"
+              />
+              <div class="gallery-overlay">
+                <span class="gallery-badge">
+                  {{ capture.detections|length }} deteksi
+                </span>
+              </div>
+            </div>
+
+            <div class="gallery-info">
+              <div class="gallery-timestamp">
+                {{ capture.timestamp.split('T')[0] }} {{
+                capture.timestamp.split('T')[1].split('.')[0] }}
+              </div>
+
+              <div class="gallery-detections">
+                {% for det in capture.detections %}
+                <div class="detection-tag">
+                  {{ det.class_name }} ({{ "%.1f"|format(det.confidence * 100)
+                  }}%)
+                </div>
+                {% endfor %}
+              </div>
+
+              <div class="gallery-quality">
+                Kualitas:
+                <strong>{{ capture.feedback.summary.quality_score }}</strong>
+              </div>
+
+              <div class="gallery-actions">
+                <a
+                  href="/captures/{{ capture.original_image }}"
+                  download
+                  class="btn-small btn-secondary"
+                >
+                  📥 Asli
+                </a>
+                <a
+                  href="/captures/{{ capture.annotated_image }}"
+                  download
+                  class="btn-small btn-primary"
+                >
+                  📥 Terdeteksi
+                </a>
+                <a
+                  href="/captures/{{ capture.data }}"
+                  download
+                  class="btn-small btn-secondary"
+                >
+                  📄 JSON
+                </a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="no-captures">
+          <div class="empty-state">
+            <div class="empty-icon">📷</div>
+            <h2>Belum ada tangkapan</h2>
+            <p>Mulai deteksi dan tangkap hasil pertama Anda!</p>
+            <a href="/" class="btn btn-primary">Ke Kamera</a>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Modal for detailed view -->
+      <div id="captureModal" class="modal hidden" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+          <span class="modal-close" onclick="closeModal()">&times;</span>
+          <div id="modalBody">
+            <!-- Will be populated by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function openModal(captureId) {
+        // In a production app, you'd fetch full details via API
+        // For now, just show the image in a larger view
+        const modal = document.getElementById("captureModal");
+        modal.classList.remove("hidden");
+      }
+
+      function closeModal() {
+        const modal = document.getElementById("captureModal");
+        modal.classList.add("hidden");
+      }
+
+      // Close modal on escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closeModal();
+        }
+      });
+    </script>
+  </body>
+</html>
