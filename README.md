@@ -1,0 +1,1 @@
+# Deteksi-Penyakit-Daun-Tanaman-Secara-Real-Time-Menggunakan-Deep-Learning-YOLOv8-Berbasis-Web
