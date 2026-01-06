@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🌿 Deteksi Penyakit Daun Tanaman
 
 Sistem deteksi penyakit daun tanaman secara real-time menggunakan YOLOv8, dengan akses kamera dari browser ponsel atau desktop melalui Wi-Fi. Dilengkapi deteksi langsung, capture snapshot, dan umpan balik AI dengan filtering yang ditingkatkan untuk mengurangi false positives.
@@ -494,3 +495,6 @@ Sempurna untuk:
 **Dibuat dengan ❤️ untuk edukasi deteksi penyakit tanaman**
 
 Untuk update dan issues, periksa repository proyek.
+=======
+# Deteksi-Penyakit-Daun-Tanaman-Secara-Real-Time-Menggunakan-Deep-Learning-YOLOv8-Berbasis-Web
+>>>>>>> c78464d3b249ea24256244f1e73a282135c05765
