@@ -6,24 +6,12 @@ Sistem deteksi penyakit daun tanaman secara real-time menggunakan YOLOv8, dengan
 ## ✨ Fitur
 
 - **Deteksi Real-Time**: Menggunakan YOLOv8 untuk deteksi penyakit tanaman yang akurat
-- **🆕 Filtering Ditingkatkan**: Deteksi hijau untuk mencegah false positives pada objek non-daun
-- **🆕 Confidence Cerdas**: Threshold lebih tinggi (0.35) untuk deteksi lebih akurat
 - **Mobile-First**: Akses kamera dari browser ponsel, proses di laptop
 - **Umpan Balik AI**: Penilaian kualitas berbasis aturan dan saran
 - **Sistem Capture**: Simpan gambar original + annotated dengan metadata JSON
 - **Tampilan Galeri**: Browse dan download tangkapan sebelumnya
 - **Metrik Kualitas**: Analisis kecerahan, blur, dan kepercayaan
 - **Panduan Aman**: Dukungan keputusan dengan disclaimer profesional
-
-## 🎯 Yang Baru di v2.0
-
-### Sistem Deteksi Ditingkatkan
-- **Verifikasi Warna Hijau**: Mendeteksi dan memfilter objek non-daun dengan memeriksa konten hijau
-- **Pengurangan False Positives**: Pengurangan ~80% pada deteksi yang salah
-- **Parameter yang Dapat Dikonfigurasi**: Sesuaikan confidence dan threshold hijau sesuai kebutuhan
-- **Statistik Detail**: Lihat statistik filtering dalam respons API
-
-Lihat [ENHANCED_DETECTION_GUIDE.md](ENHANCED_DETECTION_GUIDE.md) untuk dokumentasi detail.
 
 ## 📋 Persyaratan
 
@@ -225,8 +213,6 @@ Test-Path "models\best.pt"
 2. **Sesuaikan Green Filtering**: Ubah `min_green_ratio=0.15` ke `0.20` atau `0.25` untuk filtering lebih ketat
 3. **Gunakan Testing Script**: Jalankan `python test_enhanced_detection.py <image> --tune` untuk menemukan parameter optimal
 4. **Periksa Kualitas Model**: Retrain dengan sampel negatif lebih baik (gambar tanpa daun)
-
-Lihat [ENHANCED_DETECTION_GUIDE.md](ENHANCED_DETECTION_GUIDE.md) untuk panduan tuning detail.
 
 ### 🆕 Daun Berpenyakit Tidak Terdeteksi
 
